@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registration Form</title>
+  <!-- Include Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="w-full sm:w-96 bg-white rounded-lg p-8 shadow-md">
+    <h1 class="text-2xl font-semibold mb-4">Registration Form</h1>
+    <div class="flex justify-between mb-4">
+      <button id="clientBtn" class="category-button">Client</button>
+      <button id="labourBtn" class="category-button">Labour</button>
+      <button id="contractorBtn" class="category-button">Contractor</button>
+    </div>
+    <form id="registrationForm" class="hidden">
+      <!-- Form fields for each category -->
+      <div id="clientForm" class="category-form">
+        <label class="block mb-2">Client Name</label>
+        <input type="text" id="clientName"
+          class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500" />
+        <label class="block mt-4 mb-2">Company Name</label>
+        <input type="text" id="clientCompany"
+          class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500" />
+        <label class="block mt-4 mb-2">tiwari</label>
+        <input type="email" id="clientEmail"
+          class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500" />
+      </div>
+      <div id="labourForm" class="category-form hidden">
+        <label class="block mb-2">Labour Name</label>
+        <input type="text" id="labourName"
+          class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500" />
+        <label class="block mt-4 mb-2">Skills</label>
+        <input type="text" id="labourSkills"
+          class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500" />
+        <label class="block mt-4 mb-2">Phone Number</label>
+        <input type="tel" id="labourPhone"
+          class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500" />
+      </div>
+      <div id="contractorForm" class="category-form hidden">
+        <label class="block mb-2">Contractor Name</label>
+        <input type="text" id="contractorName"
+          class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500" />
+        <label class="block mt-4 mb-2">Company Name</label>
+        <input type="text" id="contractorCompany"
+          class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500" />
+        <label class="block mt-4 mb-2">License Number</label>
+        <input type="text" id="contractorLicense"
+          class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500" />
+      </div>
+      <div class="mt-4">
+        <label class="block mb-2">Username Preview</label>
+        <span id="usernamePreview" class="text-gray-600"></span>
+      </div>
+      <button type="submit" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <script>
+    const clientBtn = document.getElementById("clientBtn");
+    const labourBtn = document.getElementById("labourBtn");
+    const contractorBtn = document.getElementById("contractorBtn");
+    const registrationForm = document.getElementById("registrationForm");
+
+    clientBtn.addEventListener("click", () => toggleCategory("client"));
+    labourBtn.addEventListener("click", () => toggleCategory("labour"));
+    contractorBtn.addEventListener("click", () =>
+      toggleCategory("contractor")
+    );
+
+    function toggleCategory(category) {
+      document
+        .querySelectorAll(".category-form")
+        .forEach((form) => form.classList.add("hidden"));
+      document.getElementById(`${category}Form`).classList.remove("hidden");
+      registrationForm.classList.remove("hidden");
+    }
+
+    const clientNameInput = document.getElementById("clientName");
+    const labourNameInput = document.getElementById("labourName");
+    const contractorNameInput = document.getElementById("contractorName");
+    const usernamePreview = document.getElementById("usernamePreview");
+
+    clientNameInput.addEventListener("input", () =>
+      updateUsernamePreview("CL", clientNameInput.value)
+    );
+    labourNameInput.addEventListener("input", () =>
+      updateUsernamePreview("LA", labourNameInput.value)
+    );
+    contractorNameInput.addEventListener("input", () =>
+      updateUsernamePreview("CO", contractorNameInput.value)
+    );
+
+    function updateUsernamePreview(prefix, input) {
+      const sanitizedInput = input.replace(/\s+/g, ""); // Remove spaces
+      usernamePreview.textContent = `${prefix} - ${sanitizedInput}`;
+    }
+
+    registrationForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const formData = new FormData(this);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
+      try {
+        const response = await fetch('/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          console.log('Data submitted successfully!');
+          alert('Form submitted successfully!');
+        } else {
+          console.error('Data submission failed.');
+          alert('Error submitting form.');
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+        alert('An error occurred. Please try again later.');
+      }
+    });
+  </script>
+</body>
+
+</html>
