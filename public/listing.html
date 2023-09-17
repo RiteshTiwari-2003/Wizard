@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    <title>Available Labors</title>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-semibold mb-6">Available Labors</h1>
+
+        <!-- Labor Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Labor Card 1 -->
+            <div class="bg-white rounded-lg shadow-lg p-4">
+                <h2 class="text-xl font-semibold">Labor Type 1</h2>
+                <p class="text-gray-600 mb-2">Availability: 8:00 AM - 5:00 PM</p>
+                <p class="text-gray-600 mb-2">Hourly Charge: $20</p>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-2">Hire Labor</button>
+            </div>
+
+            <!-- Labor Card 2 -->
+            <div class="bg-white rounded-lg shadow-lg p-4">
+                <h2 class="text-xl font-semibold">Labor Type 2</h2>
+                <p class="text-gray-600 mb-2">Availability: 9:00 AM - 6:00 PM</p>
+                <p class="text-gray-600 mb-2">Hourly Charge: $25</p>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-2">Hire Labor</button>
+            </div>
+
+            <!-- Add more labor cards as needed -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-6 flex justify-center">
+            <nav class="relative z-0 inline-flex shadow-sm -space-x-px" aria-label="Pagination">
+                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                    <!-- Previous Page Arrow -->
+                    <span class="sr-only">Previous</span>
+                    <!-- Heroicon name: solid/chevron-left -->
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M6.293 9.293a1 1 0 011.414 0L11 13.586V7a1 1 0 112 0v6.586l3.293-3.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+
+                <!-- Page Numbers -->
+                <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">1</a>
+                <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">2</a>
+                <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
+
+                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                    <!-- Next Page Arrow -->
+                    <span class="sr-only">Next</span>
+                    <!-- Heroicon name: solid/chevron-right -->
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M13.293 10.293a1 1 0 010 1.414L8.586 15H15a1 1 0 110 2H7a1 1 0 01-1-1v-8a1 1 0 112 0v3.586l4.293-4.293a1 1 0 111.414 1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>
